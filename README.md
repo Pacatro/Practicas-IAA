@@ -27,7 +27,7 @@ Iniciar entorno virtual
 source venv/bin/activate
 ```
 
-Si todo ha salido bien debería aparecer la coletilla `(venv)` delante de tu prop de la terminal.
+Si todo ha salido bien debería aparecer la coletilla `(venv)` delante de tu promp de la terminal.
 
 Desactivar entorno virtual
 
