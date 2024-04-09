@@ -21,7 +21,7 @@ class Perceptron:
         
         result += self.weights[-1] # Add bias (last element of the weights list)
         
-        # If w1 + w2 + ... + w3 >= 0 -> step(x) = 1
+        # Prediction is true if x = w1 + w2 + ... + w3 >= 0
         return result >= 0
 
     def ajust(self, epochs: int, learning_rate: float):
