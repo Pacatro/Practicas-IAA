@@ -1,34 +1,17 @@
 import random
+import time
 
 class Perceptron:
-    def __init__(self, num_weights: int):
-        self.weights = [1 for _ in range(num_weights)]
+    def __init__(self, data: list[list], data_labels: list[bool]):
+        self.data = data
+        self.data_labels = data_labels
+        self.weights = [1 for _ in range(len(data[0])+1)]
         
     def get_weights(self): 
         return self.weights
     
     def set_weights(self, weights: list): 
         self.weights = weights
-    
-    def ajust(self, points: list[list], points_labels: list, epochs: int, learning_rate: float):
-        for epoch in range(0, epochs):
-            print(f"Epoch: {epoch}")
-            
-            print(f"Initial weights: {self.weights}")
-            
-            random_point_index = random.randint(0, len(points))
-            point = points[random_point_index]
-            point_label = points_labels[random_point_index]
-            
-            prediction = self.predict(point)
-            
-            # Perceptron trick
-            for i in range(len(point)):
-                self.weights[i] = self.weights[i] + learning_rate * (point_label - prediction) * point[0]
-            
-            self.weights[-1] = self.weights[-1] + learning_rate * (point_label - prediction)
-            
-            print(f"Ajust weights: {self.weights}")
     
     def predict(self, point: list):
         result = 0
@@ -41,11 +24,80 @@ class Perceptron:
         # If w1 + w2 + ... + w3 >= 0 -> step(x) = 1
         return result >= 0
 
-def main():
-    perceptron = Perceptron(3)
+    def ajust(self, epochs: int, learning_rate: float):
+        for _ in range(epochs):
+            # Select a random point from the dataset and its corresponding label
+            random_point_index = random.randint(0, len(self.data)-1)
+            point = self.data[random_point_index]
+            point_label = self.data_labels[random_point_index]
+            
+            prediction = self.predict(point) # Predict the label of the random point
+                
+            # print(f"Epoch: {epoch}")
+            # print(f"Initial weights: {self.weights}")
+            
+            # Perceptron trick
+            for i in range(len(point)):
+                self.weights[i] = self.weights[i] + learning_rate * (point_label - prediction) * point[0]
+            
+            self.weights[-1] = self.weights[-1] + learning_rate * (point_label - prediction)
+            
+            # print(f"Ajusted weights: {self.weights}")
+            
+    def error(self):
+        error: int = 0
+        
+        for point in self.data:
+            for i in range(len(point)):
+                error += self.weights[i] * point[i]
+                
+            error += self.weights[-1]
+            
+        return abs(error) / len(self.data)
+
+def main():    
+    data = [
+        [1, 0],
+        [0, 2],
+        [1, 1],
+        [1, 2],
+        [1, 3],
+        [2, 2],
+        [2, 3],
+        [3, 2],
+    ]
     
-    print(perceptron.get_weights())
-    print(perceptron.predict([1, 2]))
+    data_labels = [False, False, False, False, True, True, True, True]
+    
+    # data = [[1, 1]]
+    # data_labels = [False]
+    
+    perceptron = Perceptron(data=data, data_labels=data_labels)
+    # perceptron.set_weights([2, 3, -4])
+    
+    initial_pred = [perceptron.predict(point) for point in data]
+    initial_error = perceptron.error()
+    
+    # Ajust the perceptron
+    epochs = 1000
+    learning_rate = 0.01
+    
+    print(f"Ajusting the perceptron for {epochs} epochs with a learning rate of {learning_rate}\n")
+    init = time.time()
+    perceptron.ajust(epochs=epochs, learning_rate=learning_rate)
+    end = time.time()
+    
+    ajust_time = end - init
+        
+    new_pred = [perceptron.predict(point) for point in data]
+    new_error = perceptron.error()
+    
+    print(f"Labels: {data_labels}\n")
+    print(f"Initial prediction: {initial_pred}")
+    print(f"Initial error: {initial_error}")
+    print(f"New prediction: {new_pred}")
+    print(f"New error: {new_error}\n")
+    print(f"Ajust time: {ajust_time} seconds")
     
 if __name__ == "__main__":
     main()
