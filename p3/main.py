@@ -25,20 +25,7 @@ class Perceptron:
         return prediction >= 0
     
     def predict(self):
-        predictions = []
-        
-        for point in self.data:            
-            prediction = 0
-            
-            for i in range(len(point)):
-                prediction += self.weights[i] * point[i]
-            
-            prediction += self.weights[-1] # Add bias (last element of the weights list)
-        
-            # Prediction is true if x = w1 + w2 + ... + w3 >= 0
-            predictions.append(prediction >= 0)
-            
-        return predictions
+        return [self.predict_point(point) for point in self.data]
 
     def ajust(self, epochs: int, learning_rate: float):
         for _ in range(epochs):
