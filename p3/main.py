@@ -57,7 +57,7 @@ class Perceptron:
                 
             error += self.weights[-1] # error = |w1*x1 + w2*x2 + ... + wn*xn + b|
         
-	    # Average error of all points
+        # Average error of all points
         return abs(error) / len(self.data)
 
 def main():    
