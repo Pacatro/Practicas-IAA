@@ -49,7 +49,7 @@ class Perceptron:
     
     # TODO: Mirar si este es el error real
     def error(self):
-        error: int = 0
+        error = 0.0
         
         for point in self.data:
             for i in range(len(point)):
@@ -57,6 +57,7 @@ class Perceptron:
                 
             error += self.weights[-1] # error = |w1*x1 + w2*x2 + ... + wn*xn + b|
         
+	# Average error of all points
         return abs(error) / len(self.data)
 
 def main():    
