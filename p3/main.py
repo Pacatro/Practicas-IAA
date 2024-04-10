@@ -12,17 +12,33 @@ class Perceptron:
     
     def set_weights(self, weights: list): 
         self.weights = weights
-    
-    def predict(self, point: list):
-        result = 0
         
+    def predict_point(self, point: list):
+        prediction = 0
+            
         for i in range(len(point)):
-            result += self.weights[i] * point[i]
+            prediction += self.weights[i] * point[i]
         
-        result += self.weights[-1] # Add bias (last element of the weights list)
-        
+        prediction += self.weights[-1] # Add bias (last element of the weights list)
+    
         # Prediction is true if x = w1 + w2 + ... + w3 >= 0
-        return result >= 0
+        return prediction >= 0
+    
+    def predict(self):
+        predictions = []
+        
+        for point in self.data:            
+            prediction = 0
+            
+            for i in range(len(point)):
+                prediction += self.weights[i] * point[i]
+            
+            prediction += self.weights[-1] # Add bias (last element of the weights list)
+        
+            # Prediction is true if x = w1 + w2 + ... + w3 >= 0
+            predictions.append(prediction >= 0)
+            
+        return predictions
 
     def ajust(self, epochs: int, learning_rate: float):
         for _ in range(epochs):
@@ -31,7 +47,7 @@ class Perceptron:
             point = self.data[random_point_index]
             point_label = self.data_labels[random_point_index]
             
-            prediction = self.predict(point) # Predict the label of the random point
+            prediction = self.predict_point(point) # Predict the label of the random point
                 
             # print(f"Epoch: {epoch}")
             # print(f"Initial weights: {self.weights}")
@@ -43,7 +59,8 @@ class Perceptron:
             self.weights[-1] = self.weights[-1] + learning_rate * (point_label - prediction)
             
             # print(f"Ajusted weights: {self.weights}")
-            
+    
+    # TODO: Mirar si este es el error real
     def error(self):
         error: int = 0
         
@@ -51,8 +68,8 @@ class Perceptron:
             for i in range(len(point)):
                 error += self.weights[i] * point[i]
                 
-            error += self.weights[-1]
-            
+            error += self.weights[-1] # error = |w1*x1 + w2*x2 + ... + wn*xn + b|
+        
         return abs(error) / len(self.data)
 
 def main():    
@@ -75,7 +92,7 @@ def main():
     perceptron = Perceptron(data=data, data_labels=data_labels)
     # perceptron.set_weights([2, 3, -4])
     
-    initial_pred = [perceptron.predict(point) for point in data]
+    initial_pred = perceptron.predict()
     initial_error = perceptron.error()
     
     # Ajust the perceptron
@@ -89,7 +106,7 @@ def main():
     
     ajust_time = end - init
         
-    new_pred = [perceptron.predict(point) for point in data]
+    new_pred = perceptron.predict()
     new_error = perceptron.error()
     
     print(f"Labels: {data_labels}\n")
