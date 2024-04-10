@@ -53,7 +53,6 @@ class Perceptron:
             
             self.weights[-1] = self.weights[-1] + learning_rate * (point_label - prediction)
     
-    # TODO: Mirar si este es el error real
     def error(self) -> float:
         error = 0.0
         
