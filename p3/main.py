@@ -55,12 +55,13 @@ def main():
     logistical_classification = LogisticalClassification(data, data_labels)
     
     initial_weights = logistical_classification.get_weights()
-    initial_pred = logistical_classification.predict()
+    initial_pred = logistical_classification.predict(0.5)
     initial_error = logistical_classification.error()
     
     # Ajust the logistical_classification
     epochs = 10000
     learning_rate = 0.01
+    threshold = 0.5
     
     print(f"\nAjusting the logistical_classification for {epochs} epochs with a learning rate of {learning_rate}\n")
     start = time.time()
@@ -70,10 +71,10 @@ def main():
     ajust_time = end - start
     
     ajusted_weights = logistical_classification.get_weights()
-    ajusted_pred = logistical_classification.predict()
+    ajusted_pred = logistical_classification.predict(threshold)
     ajusted_error = logistical_classification.error()
     
-    print(f"Labels: {data_labels}\n")
+    print(f"Threshold: {threshold}\n")
     
     print(f"Initial weights: {initial_weights}")
     print(f"Initial prediction: {initial_pred}")

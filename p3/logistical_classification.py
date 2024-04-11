@@ -16,8 +16,8 @@ class LogisticalClassification(Perceptron):
         # sigma(x) = 1 / (1 + e^-x)
         return 1 / (1 + math.e**(-result))
     
-    def predict(self) -> list[float]:
-        return [self.predict_point(point) >= 0.5 for point in self.data]
+    def predict(self, threshold: float = 0.5) -> list[float]:
+        return [self.predict_point(point) >= threshold for point in self.data]
     
     def error(self):
         error = 0
@@ -32,4 +32,3 @@ class LogisticalClassification(Perceptron):
             error += logloss
             
         return error / len(self.data)
-    
