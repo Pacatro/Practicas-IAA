@@ -14,10 +14,10 @@ def main():
         [3, 2],
     ]
     
-    data_labels = [0, 0, 0, 0, 1, 1, 1, 1]
+    data_labels = [False, False, False, False, True, True, True, True]
     
     # data = [[1, 1]]
-    # data_labels = [0]
+    # data_labels = [False]
     
     perceptron = Perceptron(data, data_labels)
     # perceptron.set_weights([2, 3, -4])
@@ -59,10 +59,10 @@ def main():
     initial_error = logistical_classification.error()
     
     # Ajust the logistical_classification
-    epochs = 1000
+    epochs = 10000
     learning_rate = 0.01
     
-    print(f"Ajusting the logistical_classification for {epochs} epochs with a learning rate of {learning_rate}\n")
+    print(f"\nAjusting the logistical_classification for {epochs} epochs with a learning rate of {learning_rate}\n")
     start = time.time()
     logistical_classification.ajust(epochs=epochs, learning_rate=learning_rate)
     end = time.time()

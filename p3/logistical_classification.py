@@ -17,7 +17,7 @@ class LogisticalClassification(Perceptron):
         return 1 / (1 + math.e**(-result))
     
     def predict(self) -> list[float]:
-        return [self.predict_point(point) for point in self.data]
+        return [self.predict_point(point) >= 0.5 for point in self.data]
     
     def error(self):
         error = 0
