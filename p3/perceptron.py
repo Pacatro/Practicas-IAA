@@ -33,7 +33,7 @@ class Perceptron:
         result += self.weights[-1] # Add bias (last element of the weights list)
     
         # If x = w1 + w2 + ... + w3 >= 0, then step(x) = 1
-        return int(result >= 0)
+        return result >= 0
     
     def predict(self) -> list[int]: 
         return [self.predict_point(point) for point in self.data]
