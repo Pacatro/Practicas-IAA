@@ -19,7 +19,7 @@ class LogisticalClassification(Perceptron):
     def predict(self, threshold: float = 0.5) -> list[float]:
         return [self.predict_point(point) >= threshold for point in self.data]
     
-    def error(self):
+    def error(self) -> float:
         error = 0
         
         for i in range(len(self.data)):
