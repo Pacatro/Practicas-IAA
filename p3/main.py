@@ -19,6 +19,8 @@ def main():
     # data = [[1, 1]]
     # data_labels = [False]
     
+    print(f"Labels: {data_labels}\n")
+    
     perceptron = Perceptron(data, data_labels)
     # perceptron.set_weights([2, 3, -4])
     
@@ -31,6 +33,7 @@ def main():
     learning_rate = 0.01
     
     print(f"Ajusting the perceptron for {epochs} epochs with a learning rate of {learning_rate}\n")
+    
     start = time.time()
     perceptron.ajust(epochs=epochs, learning_rate=learning_rate)
     end = time.time()
@@ -40,9 +43,7 @@ def main():
     ajusted_weights = perceptron.get_weights()
     ajusted_pred = perceptron.predict()
     ajusted_error = perceptron.error()
-    
-    print(f"Labels: {data_labels}\n")
-    
+        
     print(f"Initial weights: {initial_weights}")
     print(f"Initial prediction: {initial_pred}")
     print(f"Initial error: {initial_error}\n")
@@ -50,7 +51,8 @@ def main():
     print(f"Ajusted weights: {ajusted_weights}")
     print(f"Ajusted prediction: {ajusted_pred}")
     print(f"Ajusted error: {ajusted_error}\n")
-    print(f"Ajust time: {ajust_time} seconds")
+    
+    print(f"Perceptron time: {ajust_time} seconds")
     
     logistical_classification = LogisticalClassification(data, data_labels)
     
@@ -83,7 +85,8 @@ def main():
     print(f"Ajusted weights: {ajusted_weights}")
     print(f"Ajusted prediction: {ajusted_pred}")
     print(f"Ajusted error: {ajusted_error}\n")
-    print(f"Ajust time: {ajust_time} seconds")
+    
+    print(f"Logistical Classification time: {ajust_time} seconds")
     
 if __name__ == "__main__":
     main()
