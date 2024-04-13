@@ -1,22 +1,25 @@
 import math
 from perceptron import Perceptron
 
-class LogisticalClassification(Perceptron):
+class LogisticRegression(Perceptron):
     def __init__(self, data: list[list], data_labels: list[bool], inital_weights: list = None):
         super().__init__(data, data_labels, inital_weights)
         
     def predict_point(self, point: list) -> float:
-        result = 0
+        result: float = 0
             
         for i in range(len(point)):
             result += self.weights[i] * point[i]
         
         result += self.weights[-1] # Add bias (last element of the weights list)
     
-        # sigma(x) = 1 / (1 + e^-x)
-        return 1 / (1 + math.e**(-result))
+        # sigma(x) = 1 / (1 + exp(-x))
+        return 1 / (1 + math.exp(-result))
     
-    def predict(self, threshold: float = 0.5) -> list[float]:
+    def predict(self, threshold: float = 0.5, softmax: bool = False) -> list:
+        # if softmax:
+            # return [math.exp(self.predict_point(point)) / sum(math.exp(self.predict_point(point)) for point in self.data) for point in self.data]
+        
         return [self.predict_point(point) >= threshold for point in self.data]
     
     def error(self) -> float:
