@@ -40,7 +40,7 @@ def main():
     print(f"Ajusted prediction: {perceptron.predict()}")
     print(f"Ajusted error: {perceptron.error()}\n")
     
-    print(f"Perceptron time: {ajust_time} seconds\n")
+    print(f"Ajusted Perceptron time: {ajust_time} seconds\n")
     
     logistical_regression = LogisticRegression(data, data_labels)
     
@@ -50,7 +50,8 @@ def main():
     threshold = 0.5
     
     print(f"Initial weights: {logistical_regression.get_weights()}")
-    print(f"Initial prediction: {logistical_regression.predict(threshold=threshold, softmax=True)}")
+    print(f"Initial prediction: {logistical_regression.predict(threshold=threshold)}")
+    print(f"Initial prediction (softmax): {logistical_regression.predict(threshold=threshold, softmax=True)}")
     print(f"Initial error: {logistical_regression.error()}\n")
     
     print(f"Ajusting logistical classification for {epochs} epochs with a learning rate of {learning_rate} with a threshold of {threshold}\n")
@@ -62,10 +63,11 @@ def main():
     ajust_time = end - start
     
     print(f"Ajusted weights: {logistical_regression.get_weights()}")
-    print(f"Ajusted prediction: {logistical_regression.predict(threshold=threshold, softmax=True)}")
+    print(f"Ajusted prediction: {logistical_regression.predict(threshold=threshold)}")
+    print(f"Ajusted prediction (softmax): {logistical_regression.predict(threshold=threshold, softmax=True)}")
     print(f"Ajusted error: {logistical_regression.error()}\n")
     
-    print(f"Logistic Regression time: {ajust_time} seconds")
+    print(f"Ajusted Logistic Regression time: {ajust_time} seconds")
     
 if __name__ == "__main__":
     main()
