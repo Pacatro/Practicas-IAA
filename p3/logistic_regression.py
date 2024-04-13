@@ -17,12 +17,13 @@ class LogisticRegression(Perceptron):
         return 1 / (1 + math.exp(-result))
     
     def predict(self, threshold: float = 0.5, softmax: bool = False) -> list:
-        if softmax:
-            predictions = [self.predict_point(point) for point in self.data]
-            exp_predictions = [math.exp(p) for p in predictions]
-            return [p / sum(exp_predictions) for p in exp_predictions]
+        predictions = [self.predict_point(point) for point in self.data]
         
-        return [self.predict_point(point) >= threshold for point in self.data]
+        if softmax:
+            exp_predictions = [math.exp(prediction) for prediction in predictions]
+            return [exp_prediction / sum(exp_predictions) for exp_prediction in exp_predictions]
+        
+        return [prediction >= threshold for prediction in predictions]
     
     def error(self) -> float:
         error = 0
