@@ -18,11 +18,12 @@ def main():
     
     print(f"Labels: {data_labels}\n")
     
-    perceptron = Perceptron(data, data_labels)
+    grade = len(data[0])
+    perceptron = Perceptron(grade=grade)
     
     print(f"Initial weights: {perceptron.get_weights()}")
-    print(f"Initial prediction: {perceptron.predict()}")
-    print(f"Initial error: {perceptron.error()}\n")
+    print(f"Initial prediction: {perceptron.predict(data=data)}")
+    print(f"Initial error: {perceptron.error(data=data)}\n")
     
     # Ajust the perceptron
     epochs = 1000
@@ -31,18 +32,18 @@ def main():
     print(f"Ajusting perceptron for {epochs} epochs with a learning rate of {learning_rate}\n")
     
     start = time.time()
-    perceptron.ajust(epochs=epochs, learning_rate=learning_rate)
+    perceptron.ajust(epochs=epochs, learning_rate=learning_rate, data=data, data_labels=data_labels)
     end = time.time()
     
     ajust_time = end - start
     
-    print(f"Ajusted weights: {perceptron.get_weights()}")
-    print(f"Ajusted prediction: {perceptron.predict()}")
-    print(f"Ajusted error: {perceptron.error()}\n")
+    print(f"Adjusted weights: {perceptron.get_weights()}")
+    print(f"Adjusted prediction: {perceptron.predict(data=data)}")
+    print(f"Adjusted error: {perceptron.error(data=data)}\n")
     
-    print(f"Ajusted Perceptron time: {ajust_time} seconds\n")
+    print(f"Adjusted Perceptron time: {ajust_time} seconds\n")
     
-    logistical_regression = LogisticRegression(data, data_labels)
+    logistical_regression = LogisticRegression(grade=grade)
     
     # Ajust the logistical_regression
     epochs = 10000
@@ -50,24 +51,24 @@ def main():
     threshold = 0.5
     
     print(f"Initial weights: {logistical_regression.get_weights()}")
-    print(f"Initial prediction: {logistical_regression.predict(threshold=threshold)}")
-    print(f"Initial prediction (softmax): {logistical_regression.predict(threshold=threshold, softmax=True)}")
-    print(f"Initial error: {logistical_regression.error()}\n")
+    print(f"Initial prediction: {logistical_regression.predict(data=data, threshold=threshold)}")
+    print(f"Initial prediction (prob): {logistical_regression.predict(data=data, threshold=threshold, prob=True)}")
+    print(f"Initial error: {logistical_regression.error(data=data, data_labels=data_labels)}\n")
     
     print(f"Ajusting logistical classification for {epochs} epochs with a learning rate of {learning_rate} with a threshold of {threshold}\n")
     
     start = time.time()
-    logistical_regression.ajust(epochs=epochs, learning_rate=learning_rate)
+    logistical_regression.ajust(epochs=epochs, learning_rate=learning_rate, data=data, data_labels=data_labels)
     end = time.time()
     
     ajust_time = end - start
     
-    print(f"Ajusted weights: {logistical_regression.get_weights()}")
-    print(f"Ajusted prediction: {logistical_regression.predict(threshold=threshold)}")
-    print(f"Ajusted prediction (softmax): {logistical_regression.predict(threshold=threshold, softmax=True)}")
-    print(f"Ajusted error: {logistical_regression.error()}\n")
+    print(f"Adjusted weights: {logistical_regression.get_weights()}")
+    print(f"Adjusted prediction: {logistical_regression.predict(data=data, threshold=threshold)}")
+    print(f"Adjusted prediction (prob): {logistical_regression.predict(data=data, threshold=threshold, prob=True)}")
+    print(f"Adjusted error: {logistical_regression.error(data=data, data_labels=data_labels)}\n")
     
-    print(f"Ajusted Logistic Regression time: {ajust_time} seconds")
+    print(f"Adjusted Logistic Regression time: {ajust_time} seconds")
     
 if __name__ == "__main__":
     main()
