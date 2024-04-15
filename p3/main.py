@@ -55,7 +55,7 @@ def main():
     print(f"Initial prediction (prob): {logistical_regression.predict(data=data, threshold=threshold, prob=True)}")
     print(f"Initial error: {logistical_regression.error(data=data, data_labels=data_labels)}\n")
     
-    print(f"Ajusting logistical classification for {epochs} epochs with a learning rate of {learning_rate} with a threshold of {threshold}\n")
+    print(f"Ajusting logistical regression for {epochs} epochs with a learning rate of {learning_rate} with a threshold of {threshold}\n")
     
     start = time.time()
     logistical_regression.ajust(epochs=epochs, learning_rate=learning_rate, data=data, data_labels=data_labels)
