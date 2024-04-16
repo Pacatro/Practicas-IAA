@@ -1,0 +1,1 @@
+{"layers": 1, "n_units0": 32, "activation_layer_0": "relu", "optimizer": "adam", "learning_rate": 0.01, "batch_size": 128, "n_units1": 16, "activation_layer_1": "relu", "n_units2": 64, "activation_layer_2": "sigmoid", "n_units3": 64, "activation_layer_3": "relu"}
