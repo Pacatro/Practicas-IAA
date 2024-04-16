@@ -10,7 +10,7 @@ class Perceptron:
     def set_weights(self, weights: list):
         self.weights = weights
         
-    def predict_point(self, point: list) -> int:
+    def calc_line_ecuation(self, point: list) -> float:
         result = 0
             
         for i in range(len(point)):
@@ -18,10 +18,16 @@ class Perceptron:
         
         result += self.weights[-1] # Add bias (last element of the weights list)
     
-        # If x = w1 + w2 + ... + w3 >= 0, then step(x) = 1
-        return result >= 0
+        return result
     
-    def predict(self, data: list[list]) -> list[int]: 
+    def predict_point(self, point: list) -> bool:
+        return self.calc_line_ecuation(point) >= 0
+    
+    def predict(self, data: list[list], values: bool = False) -> list[int]: 
+        if values:
+            return [self.calc_line_ecuation(point) for point in data]
+        
+        # If x = w1 + w2 + ... + w3 >= 0, then step(x) = 1
         return [self.predict_point(point) for point in data]
 
     def ajust(self, epochs: int, learning_rate: float, data: list[list], data_labels: list[bool]):

@@ -23,6 +23,7 @@ def main():
     
     print(f"Initial weights: {perceptron.get_weights()}")
     print(f"Initial prediction: {perceptron.predict(data=data)}")
+    print(f"Initial prediction (values): {perceptron.predict(data=data, values=True)}")
     print(f"Initial error: {perceptron.error(data=data)}\n")
     
     # Ajust the perceptron
@@ -39,6 +40,7 @@ def main():
     
     print(f"Adjusted weights: {perceptron.get_weights()}")
     print(f"Adjusted prediction: {perceptron.predict(data=data)}")
+    print(f"Ajusted prediction (values): {perceptron.predict(data=data, values=True)}")
     print(f"Adjusted error: {perceptron.error(data=data)}\n")
     
     print(f"Adjusted Perceptron time: {ajust_time} seconds\n")
