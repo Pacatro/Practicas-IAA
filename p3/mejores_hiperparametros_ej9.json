@@ -1,0 +1,1 @@
+{"layers": 4, "n_units0": 128, "optimizer": "adam", "learning_rate": 0.001, "n_units1": 16, "n_units2": 128, "batch_size": 64, "n_units3": 32}
