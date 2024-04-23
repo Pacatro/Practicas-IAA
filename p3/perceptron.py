@@ -2,7 +2,7 @@ import random
 
 class Perceptron:
     def __init__(self, inital_weights: list = None, grade: int = 0):
-        self.weights = inital_weights if inital_weights else [1 for _ in range(grade+1)]
+        self.weights = inital_weights if inital_weights else [random.randrange(-1, 1) for _ in range(grade+1)]
         
     def get_weights(self) -> list:
         return self.weights.copy()

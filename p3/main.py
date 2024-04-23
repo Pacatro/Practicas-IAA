@@ -27,7 +27,7 @@ def main():
     print(f"Initial error: {perceptron.error(data=data)}\n")
     
     # Ajust the perceptron
-    epochs = 1000
+    epochs = 10000
     learning_rate = 0.01
     
     print(f"Ajusting perceptron for {epochs} epochs with a learning rate of {learning_rate}\n")
