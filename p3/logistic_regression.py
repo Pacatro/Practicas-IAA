@@ -20,7 +20,7 @@ class LogisticRegression(Perceptron):
         if prob:
             return [self.predict_point(point) for point in data]
         
-        return [self.predict_point(point) >= threshold for point in data]
+        return [int(self.predict_point(point) >= threshold) for point in data]
     
     def error(self, data: list[list], data_labels: list[bool]) -> float:
         error = 0

@@ -20,8 +20,8 @@ class Perceptron:
     
         return result
     
-    def predict_point(self, point: list) -> bool:
-        return self.calc_line_ecuation(point) >= 0
+    def predict_point(self, point: list) -> int:
+        return int(self.calc_line_ecuation(point) >= 0)
     
     def predict(self, data: list[list], values: bool = False) -> list[int]: 
         if values:

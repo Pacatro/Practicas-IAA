@@ -14,7 +14,7 @@ def main():
         [3, 2],
     ]
     
-    data_labels = [False, False, False, False, True, True, True, True]
+    data_labels = [0, 0, 0, 0, 1, 1, 1, 1]
     
     print(f"Labels: {data_labels}\n")
     
